@@ -4,7 +4,7 @@ import { SafeAreaView, View, Text, StyleSheet } from "react-native";
 export default function Special({ navigation }){
 
     return(
-        <SafeAreaView>
+        <SafeAreaView style={styles.conteiner}>
             <Text>teste</Text>
         </SafeAreaView>
     );
