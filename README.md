@@ -4,5 +4,6 @@
   <li>Stack e Tab navigation</li>
   <li>Filtro de pesquisa por nome, região e tipo de turismo (praia ou cidade)</li>
   <li>Adiciona cidades em uma lista de cidades favoritas</li>
+  <li>Mostra detalhes sobre cada cidade</li>
 </ul>
 
