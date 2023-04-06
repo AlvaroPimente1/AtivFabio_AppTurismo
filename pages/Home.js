@@ -3,41 +3,30 @@ import { View, Text, SafeAreaView, TextInput, StyleSheet, FlatList, Image, Touch
 import 'react-native-vector-icons/Fonts/MaterialIcons.ttf'
 import { useState } from "react";
 import { useEffect } from "react";
-import { useLayoutEffect } from 'react';
-import { Icon } from 'react-native-elements';
+import { data } from '../data/data';
+
 
 export default function Home({ navigation }){
-
-    const [data, setData] = useState([
-        { key: '1', name: 'Salinas', regiao: 'Norte', diferencial: "Praia", favorito: false, image: require('../images/salinas.png')},
-        { key: '2', name: 'Mosqueiro', regiao: 'Norte', diferencial: "Praia", favorito: false, image: require('../images/mosqueiro.jpg')},
-        { key: '3', name: 'Marudá', regiao: 'Norte',  diferencial: "Praia", favorito: false, image: require('../images/maruda.jpg')},
-        { key: '4', name: 'Gramado', regiao: 'Sul',  diferencial: "Cidade", favorito: false, image: require('../images/gramado.jpg')},
-        { key: '5', name: 'Búzios', regiao: 'Sudeste',  diferencial: "Praia", favorito: false, image: require('../images/buzios.jpg')},
-        { key: '6', name: 'Recife', regiao: 'Nordeste',  diferencial: "Praia", favorito: false, image: require('../images/recife.jpg')},
-        { key: '7', name: 'Brasília', regiao: 'Centro-Oeste',  diferencial: "Cidade", favorito: false, image: require('../images/brasilia.jpg')},
-        { key: '8', name: 'São Paulo', regiao: 'Sudeste',  diferencial: "Cidade", favorito: false, image: require('../images/saoPaulo.jpg')},
-]);
-
     const [text, setText] = useState('')
     const [list, setList] = useState('')
-    const [items, setItems] = useState('')   
-    const [isSelected, setSelection] = useState(false);
-    
-    const toggleFavorite = (index) => {
-        const newData = [...data];
-        newData[index].favorito = !newData[index].favorito;
-        setData(newData);
-}
+    const [items, setItems] = useState('') 
+    const [isImageOne, setIsImageOne] = useState(true);
+
+    const handleImageToggle = () => {
+        setIsImageOne(!isImageOne);
+    };
+
+    function handleCityPress(item) {
+        navigation.navigate('Detalhes', { city: item });
+    }
+
 
     useEffect(()=>{
         setList(data)
         setItems(data)    
     },[])  
 
-    useLayoutEffect(() => {
-        navigation.setOptions({ tabBarVisible: true });
-    }, [navigation]);
+
 
 function FiltroBusca(text) {
     const filterList = items.filter((item) => {  
@@ -54,17 +43,18 @@ function FiltroBusca(text) {
     const renderItem = ({item}) =>{
         return(
             <View style={styles.lista}>
-                <TouchableOpacity style={{flexDirection: 'row'}}
-                    onPress={() => navigation.navigate('Detalhes')}
+                <TouchableOpacity style={{ flexDirection: 'row' }}
+                    onPress={() => handleCityPress(item)}
                 >
-                    <Image source={item.image} style={{ width: 45, height: 45, borderRadius: 10}}/>
-                    <Text style={{fontSize: 18, color: '#000', marginLeft: 10, paddingVertical: 9}}>{item.name}</Text>
-                    <TouchableOpacity onPress={() => toggleFavorite(item.key)}>
-                        <Icon
-                            name='star'
-                            type="MaterialIcons"
-                            size={20} 
-                            color="#900"
+                    <Image source={item.image} style={styles.imagemCidade}/>
+                    <Text style={styles.textLista}>{item.name}</Text>
+                    <TouchableOpacity
+                        style={styles.estrela}
+                        onPress={handleImageToggle}
+                    >
+                        <Image
+                        style={styles.estrela}
+                            source={isImageOne ? require('../images/baseline_star_outline_black_18dp.png') : require('../images/baseline_star_rate_black_18dp.png')}
                         />
                     </TouchableOpacity>
                 </TouchableOpacity>
@@ -129,6 +119,14 @@ const styles = StyleSheet.create({
         marginVertical: 3,
     },
 
+    textLista: {
+        fontSize: 18,
+        color: '#000', 
+        marginLeft: 10, 
+        paddingVertical: 9, 
+        flex: 1
+    },
+
     Text: {
         fontSize: 18,
         color: '#000',
@@ -141,4 +139,18 @@ const styles = StyleSheet.create({
     checkbox: {
         backgroundColor: "#000"
     },
+
+    estrela: {
+        width: 20,
+        height: 20, 
+        alignItems: 'flex-end',
+        paddingVertical: 12,
+        marginEnd: 10
+    },
+
+    imagemCidade: {
+        width: 45, 
+        height: 45, 
+        borderRadius: 10
+    }
 });

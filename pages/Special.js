@@ -1,13 +1,32 @@
 import React from "react";
-import { SafeAreaView, View, Text, StyleSheet } from "react-native";
+import { useState, useEffect } from "react";
+import { SafeAreaView, View, Text, StyleSheet, FlatList } from "react-native";
 
 export default function Special({ navigation }){
+/*     const [favorites, setFavorites] = useState([]);
 
-    return(
+    const loadFavorites = async () => {
+        const favorites = await AsyncStorage.getItem('favorites');
+        if (favorites) {
+            setFavorites(JSON.parse(favorites));
+        }
+    };
+    
+    useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+        loadFavorites();
+    });
+    
+    return unsubscribe;
+    }, [navigation]);
+    
+    // Renderiza a lista de favoritos */
+    return (
         <SafeAreaView style={styles.conteiner}>
-            <Text>teste</Text>
+            <Text>Teste</Text>
         </SafeAreaView>
     );
+    
 }
 
 
