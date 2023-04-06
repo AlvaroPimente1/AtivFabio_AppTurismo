@@ -111,12 +111,13 @@ const styles = StyleSheet.create({
 
     lista: {
         paddingVertical: 10,
-        paddingHorizontal: 5,
+        paddingHorizontal: 10,
         borderWidth: 1.5,
         borderColor: "#000",
         backgroundColor: '#F5F5F5',
         borderRadius: 5, 
         marginVertical: 3,
+        marginHorizontal: 10
     },
 
     textLista: {
