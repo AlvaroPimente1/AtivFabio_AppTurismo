@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, SafeAreaView, TextInput, StyleSheet, FlatList, Image, TouchableOpacity, Alert } from "react-native";
-import { CheckBox } from "react-native-elements";
+import 'react-native-vector-icons/Fonts/MaterialIcons.ttf'
 import { useState } from "react";
 import { useEffect } from "react";
 import { useLayoutEffect } from 'react';
@@ -59,12 +59,14 @@ function FiltroBusca(text) {
                 >
                     <Image source={item.image} style={{ width: 45, height: 45, borderRadius: 10}}/>
                     <Text style={{fontSize: 18, color: '#000', marginLeft: 10, paddingVertical: 9}}>{item.name}</Text>
-                    <TouchableOpacity onPress={() => toggleFavorite(item.key)}><Text>Favoritar</Text></TouchableOpacity>
-                    <Icon
-                        name={item.favorito ? 'star' : 'star-o'}
-                        type="font-awesome"
-                        color={item.favorito ? 'yellow' : 'gray'}
-                    />
+                    <TouchableOpacity onPress={() => toggleFavorite(item.key)}>
+                        <Icon
+                            name='star'
+                            type="MaterialIcons"
+                            size={20} 
+                            color="#900"
+                        />
+                    </TouchableOpacity>
                 </TouchableOpacity>
             </View>
         );
@@ -73,10 +75,10 @@ function FiltroBusca(text) {
 
     return(
         <SafeAreaView style={styles.conteiner}>
-        <Text style={styles.titulo}>Lista de receitas</Text>
+        <Text style={styles.titulo}>Turismo app</Text>
         <TextInput
             style={styles.inputText}
-            placeholder={'Pesquise a receita que quiser'}
+            placeholder={'Pesquise a cidade que quiser'}
             onChangeText={(t)=>FiltroBusca(t)} value={text}
             styles={styles.checkbox}
         />
