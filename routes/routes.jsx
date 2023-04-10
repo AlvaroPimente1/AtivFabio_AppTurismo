@@ -15,14 +15,14 @@ function TabNavigator() {
         <Tab.Navigator>
             <Tab.Screen name="Home" component={Home}
             options={{ headerShown: false,
-                tabBarIcon: ({size, color, focused}) => {
+                tabBarIcon: () => {
                     return <Image source={require('../images/Home.png')} style={{width: 25, height: 25, paddingTop: 10}}/>
                 }
             }}
             />
             <Tab.Screen name="Special" component={Special} 
             options={{ headerShown: false,
-                tabBarIcon: ({size, color, focused}) => {
+                tabBarIcon: () => {
                     return <Image source={require('../images/Special.png')} style={{width: 25, height: 25, paddingTop: 10}}/>
                 }
             }}

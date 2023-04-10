@@ -11,22 +11,17 @@ export default function Home({ navigation }){
     const [list, setList] = useState('')
     const [items, setItems] = useState('') 
     const [isImageOne, setIsImageOne] = useState(true);
+    const [isFavorito, setFavorito] = useState(false)
 
-    const handleImageToggle = () => {
+    const adicionarFav = (item) => {
         setIsImageOne(!isImageOne);
+        //setFavorito(!isFavorito)
     };
-
-    function handleCityPress(item) {
-        navigation.navigate('Detalhes', { city: item });
-    }
-
 
     useEffect(()=>{
         setList(data)
         setItems(data)    
     },[])  
-
-
 
 function FiltroBusca(text) {
     const filterList = items.filter((item) => {  
@@ -44,13 +39,13 @@ function FiltroBusca(text) {
         return(
             <View style={styles.lista}>
                 <TouchableOpacity style={{ flexDirection: 'row' }}
-                    onPress={() => handleCityPress(item)}
+                    onPress={() => navigation.navigate('Detalhes', { city: item })}
                 >
                     <Image source={item.image} style={styles.imagemCidade}/>
                     <Text style={styles.textLista}>{item.name}</Text>
                     <TouchableOpacity
                         style={styles.estrela}
-                        onPress={handleImageToggle}
+                        onPress={adicionarFav}
                     >
                         <Image
                         style={styles.estrela}
